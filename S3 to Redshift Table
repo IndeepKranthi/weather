@@ -1,0 +1,10 @@
+**COPY COMMAND TO LOAD DATA FROM s3 to redshift table**
+
+COPY schemaname.weather from 's3://weatherdataa/*'
+credentials 'aws_iam_role=arn:aws:iam::*********:role/*******' delimiter '\054' BZIP2   (\054 is comma delimiter)
+
+or
+
+**TO Load from external table to internal table**
+
+insert into schemaname.weather select * from schemaname.weather_pxf for read only; 
