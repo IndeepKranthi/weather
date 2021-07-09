@@ -1,0 +1,65 @@
+**DDL for Specturm table** - (external table)
+CREATE EXTERNAL TABLE schemaname.weather_pxf(
+date_time Date,
+maxtempC int,
+mintempC int,
+totalSnow_cm int,
+sunHour numeric,
+uvIndex int,
+moon_illumination int,
+moonrise varchar(10),
+moonset varchar(10),
+sunrise varchar(10),
+sunset varchar(10),
+DewPointC int,
+FeelsLikeC int, 
+HeatIndexC int,
+WindChillC int,
+WindGustKmph int,
+cloudcover int,
+humidity int,
+precipMM numeric, 
+pressure int,
+tempC int,
+visibility int,
+winddirDegree int,
+windspeedKmph int,
+location varchar(24)
+) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE 
+LOCATION 's3://weatherdataa/*' TABLE PROPERTIES ('skip.header.line.count'='1');
+
+**DDL for Redshift table** - (internal table)
+CREATE TABLE schemaname.Weather(
+date_time Date,
+maxtempC int,
+mintempC int,
+totalSnow_cm int,
+sunHour numeric,
+uvIndex int,
+moon_illumination int,
+moonrise varchar(10),
+moonset varchar(10),
+sunrise varchar(10),
+sunset varchar(10),
+DewPointC int,
+FeelsLikeC int, 
+HeatIndexC int,
+WindChillC int,
+WindGustKmph int,
+cloudcover int,
+humidity int,
+precipMM numeric, 
+pressure int,
+tempC int,
+visibility int,
+winddirDegree int,
+windspeedKmph int,
+location varchar(24)
+) 
+WITH (APPENDONLY=TRUE,
+    COMPRESSTYPE = ZLIB,
+    COMPRESSLEVEL = 5)
+DISTRIBUTED RANDOMLY;
