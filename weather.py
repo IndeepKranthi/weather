@@ -115,7 +115,7 @@ location_list = ['Detroit','Seattle']
 
 hist_weather_data = weather_hist_data(api_key,location_list,start_date,end_date,frequency,location_label = False,export_csv = True,store_df = True)
 
-s3 = boto3.client('s3',aws_access_key_id='AKIAVUHUTE53XDCHJ7P3',aws_secret_access_key='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')
+s3 = boto3.client('s3',aws_access_key_id='*******',aws_secret_access_key='************')
 
 filename = 'Seattle.csv'
 bucket_name = 'weatherdataa' #S3 Bucket Name
